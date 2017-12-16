@@ -1,0 +1,5 @@
+- name: Add the Cloudera Repository key
+  rpm_key: key=https://archive.cloudera.com/cdh5/redhat/7/x86_64/cdh/RPM-GPG-KEY-cloudera state=present
+
+- name: Add the Cloudera Repository
+  copy: src=cloudera.repo dest=/etc/yum.repos.d/

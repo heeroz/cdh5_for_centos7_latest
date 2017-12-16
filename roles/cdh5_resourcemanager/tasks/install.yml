@@ -1,0 +1,5 @@
+- name: install_resourcemanager_pkgs
+  yum: name={{ item }} state=installed
+  with_items:
+  - hadoop-yarn-resourcemanager
+  - hadoop-yarn-proxyserver

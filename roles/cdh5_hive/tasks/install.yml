@@ -1,0 +1,7 @@
+- name: install_hiveserver_packages
+  yum: name={{ item }} state=installed
+  with_items:
+  - hive
+  - hive-server2
+  - postgresql-server 
+  - postgresql-jdbc

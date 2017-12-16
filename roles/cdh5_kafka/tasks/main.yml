@@ -1,0 +1,16 @@
+---
+- name: Download the kafka
+  yum: name={{ item }} state=present update_cache=yes
+  with_items:
+  - kafka-server
+  - kafka
+
+- name: Configure Kafka server
+  template: src=server.properties.j2 dest="/etc/kafka/conf/server.properties"
+  notify: Restart kafka
+
+- meta: flush_handlers
+
+- name: Make sure Kafka is running
+  systemd: name=kafka-server enabled=yes state=started
+

@@ -1,0 +1,16 @@
+- hosts: hbase_master
+  gather_facts: no
+  tasks:
+    - name: stop hbase master
+      systemd: name={{ item }} state=stopped
+      with_items:
+        - hbase-master
+
+- hosts: hbase_regionserver
+  gather_facts: no
+  tasks:
+    - name: start hbase regionserver
+      systemd: name={{ item }} state=stopped
+      with_items:
+        - hbase-regionserver
+

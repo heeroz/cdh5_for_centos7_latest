@@ -1,0 +1,16 @@
+- name: check_firewalld_installed
+  yum: 
+   list: firewalld
+  register: is_firewalld_installed
+  ignore_errors: True
+
+- name: stop_iptables_for_centos7
+  systemd: name=firewalld state=stopped enabled=no
+  when: is_firewalld_installed.results[0].yumstate == 'installed'
+
+#- name: disable_selinux_config
+#  selinux: state=disabled
+
+#- name: disable_selinux_with_command
+#  shell: setenforce 0
+
